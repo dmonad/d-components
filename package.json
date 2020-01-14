@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lib0": "^0.1.7"
+    "lib0": "^0.2.2"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",
