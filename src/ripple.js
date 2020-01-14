@@ -1,6 +1,6 @@
 import * as component from 'lib0/component.js'
 import * as dom from 'lib0/dom.js'
-import * as eventloop from 'lib0/eventloop.js'
+import * as lib from './lib.js'
 
 const removeAllStates = ripple => {
   ripple.classList.remove('start')
@@ -31,9 +31,9 @@ export const defineRipple = component.createComponentDefiner(() => component.cre
       opacity: 0;
       transition: opacity 300ms;
     }
-    :host(:hover) .bg {
+    ${lib.isTouchDevice ? '' : `:host(:hover) .bg {
       opacity: 0.1;
-    }
+    }`}
     :host([active]) .bg {
       opacity: 0.15;
     }
