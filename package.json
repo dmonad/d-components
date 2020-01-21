@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lib0": "^0.2.2"
+    "lib0": "^0.2.7"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",
