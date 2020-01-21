@@ -57,7 +57,7 @@ export const defineRipple = component.createComponentDefiner(() => component.cre
       opacity: 0;
     }
   `,
-  state: { timers: /** @type {Array<number>} */ ([]), active: false },
+  state: { timers: /** @type {Array<number>} */ ([]), active: false, animating: false },
   listeners: {
     mousedown: (event, component) => {
       const ripple = /** @type {any} */ (dom.querySelector(/** @type {any} */ (component.shadowRoot), '.ripple'))
@@ -71,19 +71,26 @@ export const defineRipple = component.createComponentDefiner(() => component.cre
       ripple.style = `top:${y}px; left:${x}px; width:${size*2}px; height:${size*2}px;`
       ripple.classList.add('start')
       ripple.classList.add('active')
-      component.updateState({ timers: [] })
+      component.updateState({ timers: [], animating: true })
+      return false
+    },
+    mouseout: (event, component) => {
+      component.updateState({ animating: false })
       return false
     },
     mouseup: (event, component) => {
-      const ripple = /** @type {any} */ (dom.querySelector(/** @type {any} */ (component.shadowRoot), '.ripple'))
-      ripple.classList.add('end')
-      component.updateState({
-        timers: [
-          setTimeout(() => {
-            removeAllStates(ripple)
-          }, 700)
-        ]
-      })
+      if (component.state.animating) {
+        const ripple = /** @type {any} */ (dom.querySelector(/** @type {any} */ (component.shadowRoot), '.ripple'))
+        ripple.classList.add('end')
+        component.updateState({
+          animating: true,
+          timers: [
+            setTimeout(() => {
+              component.updateState({ animating: false })
+            }, 700)
+          ]
+        })
+      }
       return false
     }
   },
@@ -94,6 +101,9 @@ export const defineRipple = component.createComponentDefiner(() => component.cre
     if (prevState && prevState.timers && state.timers !== prevState.timers) {
       prevState.timers.forEach(clearTimeout)
     }
+    if (!state.animating) {
+      const ripple = /** @type {any} */ (dom.querySelector(/** @type {any} */ (component.shadowRoot), '.ripple'))
+      removeAllStates(ripple)
+    }
   }
 }))
-  
