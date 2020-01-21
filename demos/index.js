@@ -4,9 +4,10 @@ import * as dcomps from '../src/index.js'
 
 dcomps.defineTab()
 dcomps.defineLorem()
+dcomps.defineEditor()
 
 component.createComponent('d-demos', {
-  template: `<d-tab></d-tab>`,
+  template: `<d-editor></d-editor><d-tab></d-tab>`,
   childStates: {
     'd-tab': state => ({
       items: [
