@@ -7,7 +7,7 @@ dcomps.defineLorem()
 dcomps.defineEditor()
 
 component.createComponent('d-demos', {
-  template: `<d-editor></d-editor><d-tab></d-tab>`,
+  template: `<d-tab></d-tab>`,
   childStates: {
     'd-tab': state => ({
       items: [
