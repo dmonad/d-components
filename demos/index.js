@@ -2,9 +2,9 @@
 import * as component from 'lib0/component.js'
 import * as dcomps from '../src/index.js'
 
+dcomps.defineButton()
 dcomps.defineTab()
 dcomps.defineLorem()
-dcomps.defineEditor()
 
 component.createComponent('d-demos', {
   template: `<d-tab></d-tab>`,

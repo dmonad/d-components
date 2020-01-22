@@ -9,12 +9,13 @@ const removeAllStates = ripple => {
 }
 
 export const defineRipple = component.createComponentDefiner(() => component.createComponent('d-ripple', {
-  template: '<div class="bg"></div><div class="container"><div class="ripple"></div></div><slot></slot>',
+  template: '<slot></slot><div class="bg"></div><div class="container"><div class="ripple"></div></div>',
   style: `
     :host {
-      display: block;
+      display: flex;
       position: relative;
-      --ripple-color: #aaa
+      --ripple-color: #aaa;
+      flex: 1;
     }
     .container, .bg {
       display: block;
