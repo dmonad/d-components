@@ -99,10 +99,10 @@ export const defineRipple = component.createComponentDefiner(() => component.cre
     active: 'bool'
   },
   onStateChange: (state, prevState, component) => {
-    if (prevState && prevState.timers && state.timers !== prevState.timers) {
+    if (prevState && prevState.timers && (!state || state.timers !== prevState.timers)) {
       prevState.timers.forEach(clearTimeout)
     }
-    if (!state.animating) {
+    if (state && !state.animating) {
       const ripple = /** @type {any} */ (dom.querySelector(/** @type {any} */ (component.shadowRoot), '.ripple'))
       removeAllStates(ripple)
     }
