@@ -5,14 +5,13 @@ import { defineRipple } from './ripple.js'
 
 const changeAreaEvent = 'change-area-event'
 
-
 export const defineTab = component.createComponentDefiner(() => {
   component.defineListComponent()
   component.defineLazyLoadingComponent()
   defineRipple()
 
   const TabButton = component.createComponent('d-tab-button', {
-    template: `<d-ripple><button type="button"><slot name="content"></slot></button></d-ripple>`,
+    template: '<d-ripple><button type="button"><slot name="content"></slot></button></d-ripple>',
     style: `
       :host {
         --selected-color: #30bced;
@@ -56,7 +55,7 @@ export const defineTab = component.createComponentDefiner(() => {
   })
 
   return component.createComponent('d-tab', {
-    template: `<lib0-list></lib0-list><lib0-lazy></lib0-lazy>`,
+    template: '<lib0-list></lib0-list><lib0-lazy></lib0-lazy>',
     style: `
       lib0-list {
         display: flex;
@@ -74,11 +73,11 @@ export const defineTab = component.createComponentDefiner(() => {
       selected: 'number'
     },
     listeners: {
-      [changeAreaEvent]: (event, component) => component.updateState({ selected: event.detail.index})
+      [changeAreaEvent]: (event, component) => component.updateState({ selected: event.detail.index })
     },
     childStates: {
       'lib0-list': state => ({ list: state.items.map((item, index) => ({ content: item.title, index, selected: index === state.selected })), Item: TabButton }),
       'lib0-lazy': ({ items, selected }) => items[selected]
-    },
+    }
   })
 })

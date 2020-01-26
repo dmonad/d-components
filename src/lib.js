@@ -1,2 +1,2 @@
 
-export const isTouchDevice = "ontouchstart" in document.documentElement
+export const isTouchDevice = 'ontouchstart' in document.documentElement

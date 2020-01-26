@@ -8,7 +8,7 @@ export const buttonPressedEvent = 'd-button-pressed'
 export const defineButton = component.createComponentDefiner(() => {
   defineRipple()
   return component.createComponent('d-button', {
-    template: `<d-ripple><button type="button"><slot></slot></button></d-ripple>`,
+    template: '<d-ripple><button type="button"><slot></slot></button></d-ripple>',
     style: `
       :host {
         --selected-color: #30bced;

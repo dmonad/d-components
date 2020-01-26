@@ -63,13 +63,13 @@ export const defineRipple = component.createComponentDefiner(() => component.cre
     mousedown: (event, component) => {
       const ripple = /** @type {any} */ (dom.querySelector(/** @type {any} */ (component.shadowRoot), '.ripple'))
       removeAllStates(ripple)
-      const size = component.offsetWidth;
-      const pos = component.getBoundingClientRect();
+      const size = component.offsetWidth
+      const pos = component.getBoundingClientRect()
       // @ts-ignore
-      const x = event.clientX - pos.left - size;
+      const x = event.clientX - pos.left - size
       // @ts-ignore
-      const y = event.clientY - pos.top - size;
-      ripple.style = `top:${y}px; left:${x}px; width:${size*2}px; height:${size*2}px;`
+      const y = event.clientY - pos.top - size
+      ripple.style = `top:${y}px; left:${x}px; width:${size * 2}px; height:${size * 2}px;`
       ripple.classList.add('start')
       ripple.classList.add('active')
       component.updateState({ timers: [], animating: true })

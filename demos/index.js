@@ -7,7 +7,7 @@ dcomps.defineTab()
 dcomps.defineLorem()
 
 component.createComponent('d-demos', {
-  template: `<d-tab></d-tab>`,
+  template: '<d-tab></d-tab>',
   childStates: {
     'd-tab': state => ({
       items: [
