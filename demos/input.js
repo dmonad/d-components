@@ -26,11 +26,14 @@ component.createComponent('d-input-demo', {
 <d-input-text placeholder="Say hi!" label="Show Label" show-label></d-input-text><br>
 <d-input-text placeholder="Say hi!" label="Don't show label"></d-input-text><br>
 <d-input-text placeholder="Say hi!" label="Show Label with Icon" show-label><div slot="icon">•</div></d-input-text><br>
+<d-input-text placeholder="Say hi!" label="Show Label with Icon" show-label><div slot="icon">•</div><div slot="input">Some non-input goes here</div></d-input-text><br>
 <d-input-text placeholder="Say hi!" label="Don't show label with Icon" show-label><d-icon-user slot="icon"></d-icon-user></d-input-text><br>
 <br>
 <label for="custom-label">Custom Label: </label><d-input-text input-id="custom-label" placeholder="Say Hello!" ><d-icon-user slot="icon"></d-icon-user></d-input-text><br>
 <br>
 <label>Indirect Label:<d-input-text placeholder="Say hi!" ><d-icon-user slot="icon"></d-icon-user></d-input-text></label><br>
+<br>
+<label for="custom-label-2">Custom Label + custom input: </label><d-input-text placeholder="Say Hello!" input-id="custom-label-2"><input type="text" slot="input"></input><d-icon-user slot="icon"></d-icon-user></d-input-text><br>
 `,
   style: `
   .icons > * {

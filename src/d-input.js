@@ -1,31 +1,20 @@
 import * as component from 'lib0/component.js'
 import * as dom from 'lib0/dom.js'
+import * as pair from 'lib0/pair.js'
 import { dfocus } from './events.js'
 
 export const defineInputText = component.createComponentDefiner(() => component.createComponent('d-input-text', {
-  template: '<slot name="icon"></slot><slot name="input"></slot><div></div>',
-  slots: state => ({
-    input: '<input type="text"></input>'
-  }),
+  template: '<slot name="icon"></slot><slot name="input"></slot>',
   style: `
   :host {
     display: inline-flex;
     flex-wrap: nowrap;
     --border-color: var(--theme-highlight, #d12915);
     --border-color-focus: var(--theme-highlight-complementary, #52ddee);
-    position: relative;
-    margin-bottom: .1rem;
+    border-bottom: .1rem solid var(--border-color);
   }
-  div {
-    position: absolute;
-    bottom: -.1rem;
-    left: 0;
-    right: 0;
-    height: .1rem;
-    background-color: var(--border-color);
-  }
-  :host([focused]) div {
-    background-color: var(--border-color-focus);
+  :host([focused]) {
+    border-color: var(--border-color-focus);
   }
 
   :host(:not([show-label])) label {
@@ -69,7 +58,10 @@ export const defineInputText = component.createComponentDefiner(() => component.
     focused: 'bool'
   },
   onStateChange: ({ value, placeholder, label, inputId, focused }, prevState, component) => {
-    const input = /** @type {HTMLInputElement} */ (dom.querySelector(component, 'input'))
+    let input = /** @type {HTMLInputElement} */ (dom.querySelector(component, '[slot="input"]'))
+    if (!input) {
+      dom.append(component, [input = /** @type {HTMLInputElement} */ (dom.setAttributes(dom.createElement('input'), [pair.create('type', 'text'), pair.create('slot', 'input')]))])
+    }
     if (value !== input.value) {
       input.value = value
     }
