@@ -1,7 +1,5 @@
 import * as component from 'lib0/component.js'
 import * as dom from 'lib0/dom.js'
-import * as logging from 'lib0/logging.js'
-import { log } from './lib.js'
 
 export const defineInputText = component.createComponentDefiner(() => component.createComponent('d-input-text', {
   template: '<slot name="icon"></slot><slot name="input"></slot>',
@@ -54,10 +52,12 @@ export const defineInputText = component.createComponentDefiner(() => component.
     }
     if (!prevState || label !== prevState.label) {
       if (!label) {
-        log(logging.RED, 'Define labels for input elements!')
+        input.type = ''
+        input.removeAttribute('aria-label')
+      } else {
+        input.title = label
+        input.setAttribute('aria-label', label)
       }
-      input.title = label
-      input.setAttribute('aria-label', label)
     }
   }
 }))
