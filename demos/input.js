@@ -37,6 +37,9 @@ component.createComponent('d-input-demo', {
     height: 40px;
     width: 40px;
   }
+  .icons, [slot="icon"] {
+    fill: #333;
+  }
   `,
   childStates: {
     'd-input-text': state => ({ value: 'Hello World!' })
