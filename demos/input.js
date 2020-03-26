@@ -33,9 +33,6 @@ component.createComponent('d-input-demo', {
 <label>Indirect Label:<d-input-text placeholder="Say hi!" ><d-icon-user slot="icon"></d-icon-user></d-input-text></label><br>
 `,
   style: `
-  d-input-text {
-    display: inline-flex;
-  }
   .icons > * {
     height: 40px;
     width: 40px;

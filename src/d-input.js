@@ -1,8 +1,9 @@
 import * as component from 'lib0/component.js'
 import * as dom from 'lib0/dom.js'
+import { dfocus } from './events.js'
 
 export const defineInputText = component.createComponentDefiner(() => component.createComponent('d-input-text', {
-  template: '<slot name="icon"></slot><slot name="input"></slot>',
+  template: '<slot name="icon"></slot><slot name="input"></slot><div></div>',
   slots: state => ({
     input: '<input type="text"></input>'
   }),
@@ -11,8 +12,22 @@ export const defineInputText = component.createComponentDefiner(() => component.
     display: inline-flex;
     flex-wrap: nowrap;
     --border-color: var(--theme-highlight, #d12915);
-    border-bottom: .1rem solid var(--border-color);
+    --border-color-focus: var(--theme-highlight-complementary, #52ddee);
+    position: relative;
+    margin-bottom: .1rem;
   }
+  div {
+    position: absolute;
+    bottom: -.1rem;
+    left: 0;
+    right: 0;
+    height: .1rem;
+    background-color: var(--border-color);
+  }
+  :host([focused]) div {
+    background-color: var(--border-color-focus);
+  }
+
   :host(:not([show-label])) label {
     display: none;
   }
@@ -35,13 +50,25 @@ export const defineInputText = component.createComponentDefiner(() => component.
     text-overflow: ellipsis;
   }
   `,
-  state: { placeholder: '', value: '', label: '', inputId: /** @type {string?} */ (null) },
+  listeners: {
+    focusin: (event, component) => {
+      component.updateState({ focused: true })
+    },
+    focusout: (event, component) => {
+      component.updateState({ focused: false })
+    },
+    input: (event, component) => {
+      component.updateState({ value: /** @type {any} */ (event.target).value })
+    }
+  },
+  state: { placeholder: '', value: '', label: '', inputId: /** @type {string?} */ (null), focused: false },
   attrs: {
     placeholder: 'string',
     label: 'string',
-    inputId: 'string'
+    inputId: 'string',
+    focused: 'bool'
   },
-  onStateChange: ({ value, placeholder, label, inputId }, prevState, component) => {
+  onStateChange: ({ value, placeholder, label, inputId, focused }, prevState, component) => {
     const input = /** @type {HTMLInputElement} */ (dom.querySelector(component, 'input'))
     if (value !== input.value) {
       input.value = value
@@ -51,6 +78,12 @@ export const defineInputText = component.createComponentDefiner(() => component.
     }
     if (inputId && inputId !== input.id) {
       input.id = inputId
+    }
+    if (prevState && focused !== prevState.focused) {
+      dom.emitCustomEvent(component, dfocus, { bubbles: true, detail: component.state })
+    }
+    if (focused && (!prevState || !prevState.focused)) {
+      input.focus()
     }
     if (!prevState || label !== prevState.label) {
       if (!label) {
