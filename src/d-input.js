@@ -8,7 +8,8 @@ export const defineInputText = component.createComponentDefiner(() => component.
   }),
   style: `
   :host {
-    display: inline-block;
+    display: inline-flex;
+    flex-wrap: nowrap;
     --border-color: var(--theme-highlight, #d12915);
     border-bottom: .1rem solid var(--border-color);
     line-height: 1;
@@ -25,6 +26,8 @@ export const defineInputText = component.createComponentDefiner(() => component.
     height: .6em;
   }
   ::slotted([slot="input"]) {
+    flex: 1 auto;
+    min-width: 0px;
     background-color: inherit;
     outline: none;
     border: none;

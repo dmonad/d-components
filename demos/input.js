@@ -18,7 +18,7 @@ component.createComponent('d-input-demo', {
 `,
   style: `
   d-input-text {
-    display: inline-block;
+    display: inline-flex;
   }
   `,
   childStates: {
