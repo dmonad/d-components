@@ -8,7 +8,7 @@ export const createIcon = (name, svg) => component.createComponent(name, {
   template: svg,
   style: `
 :host {
-  display: inline-block;
+  display: inline;
 }
 svg {
   display: inline-block;

@@ -12,7 +12,6 @@ export const defineInputText = component.createComponentDefiner(() => component.
     flex-wrap: nowrap;
     --border-color: var(--theme-highlight, #d12915);
     border-bottom: .1rem solid var(--border-color);
-    line-height: 1;
   }
   :host(:not([show-label])) label {
     display: none;
@@ -23,7 +22,7 @@ export const defineInputText = component.createComponentDefiner(() => component.
   ::slotted([slot="icon"]) {
     margin-right: .3em;
     margin-left: .3em;
-    height: .6em;
+    height: .7em;
   }
   ::slotted([slot="input"]) {
     flex: 1 auto;
