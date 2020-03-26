@@ -1,4 +1,5 @@
-import nodeResolve from 'rollup-plugin-node-resolve'
+import nodeResolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 import { terser } from 'rollup-plugin-terser'
 
 const minificationPlugins = process.env.PRODUCTION ? [terser({
@@ -17,7 +18,10 @@ const minificationPlugins = process.env.PRODUCTION ? [terser({
 })] : []
 
 export default [{
-  input: './demos/index.js',
+  input: [
+    './demos/ripple.js',
+    './demos/input.js'
+  ],
   output: {
     name: 'demo',
     dir: 'demos/dist',
@@ -28,6 +32,7 @@ export default [{
     nodeResolve({
       mainFields: ['module', 'browser', 'main']
     }),
+    commonjs(),
     ...minificationPlugins
   ]
 }]
