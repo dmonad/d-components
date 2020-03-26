@@ -3,6 +3,7 @@
   "version": "0.1.4",
   "description": "Web components ui library",
   "main": "src/index.js",
+  "sideEffects": false,
   "scripts": {
     "start": "concurrently 'rollup -wc' serve",
     "dist": "rollup -c",
