@@ -3,6 +3,7 @@ import * as component from 'lib0/component.js'
 import * as dcomps from '../src/index.js'
 
 dcomps.defineInputText()
+dcomps.defineInputSelect()
 dcomps.defineIconUser()
 
 dcomps.defineIconEraser()
@@ -11,6 +12,7 @@ dcomps.defineIconPalette()
 dcomps.defineIconTimes()
 dcomps.defineIconTimesCircle()
 dcomps.defineIconTrash()
+dcomps.defineIconCaretDown()
 
 component.createComponent('d-input-demo', {
   template: `
@@ -34,6 +36,10 @@ component.createComponent('d-input-demo', {
 <label>Indirect Label:<d-input-text placeholder="Say hi!" ><d-icon-user slot="icon"></d-icon-user></d-input-text></label><br>
 <br>
 <label for="custom-label-2">Custom Label + custom input: </label><d-input-text placeholder="Say Hello!" input-id="custom-label-2"><input type="text" slot="input"></input><d-icon-user slot="icon"></d-icon-user></d-input-text><br>
+<br>
+
+<label for="custom-label-4">Select Label</label>
+<d-input-select label="Don't show label with Icon" input-id="custom-label-4"><d-icon-user slot="icon"></d-icon-user></d-input-select><br>
 `,
   style: `
   .icons > * {
@@ -45,6 +51,7 @@ component.createComponent('d-input-demo', {
   }
   `,
   childStates: {
-    'd-input-text': state => ({ value: 'Hello World!' })
+    'd-input-text': state => ({ value: 'Hello World!' }),
+    'd-input-select': state => ({ value: '2', options: [{ value: '1', description: 'Option 1' }, { value: '2', description: 'Great option!' }, { value: '3', description: 'Take me plz?!' }] })
   }
 })

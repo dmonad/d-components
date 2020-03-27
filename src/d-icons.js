@@ -52,3 +52,8 @@ export const defineIconTimes = component.createComponentDefiner(() => createIcon
  * @license CC-BY-4.0 [https://fontawesome.com/icons/trash-alt?style=regular] Created by https://fontawesome.com/ and slightly sanitized for use in d-components.
  */
 export const defineIconTrash = component.createComponentDefiner(() => createIcon('d-icon-trash-alt', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"/></svg>'))
+
+/**
+ * @license CC-BY-4.0 [https://fontawesome.com/icons/caret-down?style=regular] Created by https://fontawesome.com/ and slightly sanitized for use in d-components.
+ */
+export const defineIconCaretDown = component.createComponentDefiner(() => createIcon('d-icon-caret-down', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>'))
