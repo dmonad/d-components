@@ -1,6 +1,6 @@
 {
   "name": "d-components",
-  "version": "0.1.4",
+  "version": "0.2.0-0",
   "description": "Web components ui library",
   "main": "src/index.js",
   "sideEffects": false,
