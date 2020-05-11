@@ -4,6 +4,7 @@
   "description": "Web components ui library",
   "main": "src/index.js",
   "sideEffects": false,
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "start": "concurrently 'rollup -wc' serve",
     "dist": "rollup -c",

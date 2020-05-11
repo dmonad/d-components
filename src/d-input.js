@@ -127,6 +127,7 @@ export const defineInputSelect = component.createComponentDefiner(() => {
     ::slotted([slot="icon-after"]) {
       position: absolute;
       right: 0;
+      top: .06em;
       user-select: none;
       pointer-events: none;
     }
