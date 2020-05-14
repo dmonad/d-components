@@ -3,6 +3,7 @@ import * as dom from 'lib0/dom.js'
 import * as pair from 'lib0/pair.js'
 import * as object from 'lib0/object.js'
 import * as func from 'lib0/function.js'
+import * as math from 'lib0/math.js'
 import { dfocus } from './events.js'
 import { defineIconCaretDown } from './d-icons.js'
 
@@ -39,6 +40,7 @@ slot[name="icon"] {
   padding: 0;
   font: inherit;
   text-overflow: ellipsis;
+  color: inherit;
 }
 `
 const inputListeners = {
@@ -66,9 +68,6 @@ const inputOnStateChange = (input, { label, inputId, focused }, prevState, compo
   if (prevState && focused !== prevState.focused) {
     dom.emitCustomEvent(component, dfocus, { bubbles: true, detail: component.state })
   }
-  if (focused && (!prevState || !prevState.focused)) {
-    input.focus()
-  }
   if (!prevState || label !== prevState.label) {
     if (!label) {
       input.title = ''
@@ -78,21 +77,26 @@ const inputOnStateChange = (input, { label, inputId, focused }, prevState, compo
       input.setAttribute('aria-label', label)
     }
   }
+  if (focused && (!prevState || !prevState.focused)) {
+    input.focus()
+    input.focus()
+  }
 }
 
 export const defineInputText = component.createComponentDefiner(() => component.createComponent('d-input-text', {
   template: inputTemplate,
   style: inputStyle,
   listeners: inputListeners,
-  state: object.assign({ placeholder: '', value: '' }, inputState),
+  state: object.assign({ placeholder: '', value: '', grow: false }, inputState),
   attrs: {
     placeholder: 'string',
     label: 'string',
     inputId: 'string',
-    focused: 'bool'
+    focused: 'bool',
+    grow: 'bool'
   },
   onStateChange: (state, prevState, component) => {
-    const { value, placeholder } = state
+    const { value, placeholder, grow } = state
     let input = /** @type {HTMLInputElement} */ (dom.querySelector(component, '[slot="input"]'))
     if (!input) {
       dom.append(component, [input = /** @type {HTMLInputElement} */ (dom.element('input', [pair.create('type', 'text'), pair.create('slot', 'input')]))])
@@ -102,6 +106,9 @@ export const defineInputText = component.createComponentDefiner(() => component.
     }
     if (placeholder !== input.placeholder) {
       input.placeholder = placeholder
+    }
+    if (grow) {
+      input.size = math.max(value.length, 5)
     }
     inputOnStateChange(input, state, prevState, component)
   }

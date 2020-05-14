@@ -53,7 +53,7 @@ const _icons = `
 `
 
 let icons = ''
-for (let i = 0; i < 300; i++) {
+for (let i = 0; i < 1; i++) {
   icons += _icons
 }
 
@@ -63,6 +63,7 @@ component.createComponent('d-input-demo', {
   ${icons}
 </div>
 <d-input-text placeholder="Say hi!" label="Show Label" show-label></d-input-text><br>
+<d-input-text placeholder="This one grows" grow label="Show Label" show-label></d-input-text><br>
 <d-input-text placeholder="Say hi!" label="Don't show label"></d-input-text><br>
 <d-input-text placeholder="Say hi!" label="Show Label with Icon" show-label><div slot="icon">•</div></d-input-text><br>
 <d-input-text placeholder="Say hi!" label="Show Label with Icon" show-label><div slot="icon">•</div><div slot="input">Some non-input goes here</div></d-input-text><br>
@@ -86,6 +87,9 @@ component.createComponent('d-input-demo', {
   }
   .icons, [slot="icon"] {
     color: #555;
+  }
+  d-input-text {
+    min-width: 20em;
   }
   `,
   childStates: {

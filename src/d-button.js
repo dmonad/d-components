@@ -19,6 +19,7 @@ const buttonTemplate = {
     }
     button {
       background: var(--background-color);
+      color: inherit;
       border: none;
       text-align: inherit;
       outline: none;
