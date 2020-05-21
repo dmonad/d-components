@@ -4,7 +4,7 @@ import * as pair from 'lib0/pair.js'
 import * as object from 'lib0/object.js'
 import * as func from 'lib0/function.js'
 import * as math from 'lib0/math.js'
-import { dfocus } from './events.js'
+import { dfocus, dinput } from './events.js'
 import { defineIconCaretDown } from './d-icons.js'
 
 const inputTemplate = '<slot name="icon"></slot><slot name="input"></slot><slot name="icon-after"></slot>'
@@ -52,6 +52,7 @@ const inputListeners = {
   },
   input: (event, component) => {
     component.updateState({ value: /** @type {any} */ (event.target).value })
+    dom.emitCustomEvent(component, dinput, { bubbles: true, detail: component.state })
   }
 }
 
@@ -78,7 +79,6 @@ const inputOnStateChange = (input, { label, inputId, focused }, prevState, compo
     }
   }
   if (focused && (!prevState || !prevState.focused)) {
-    input.focus()
     input.focus()
   }
 }
@@ -107,7 +107,7 @@ export const defineInputText = component.createComponentDefiner(() => component.
     if (placeholder !== input.placeholder) {
       input.placeholder = placeholder
     }
-    if (grow) {
+    if (grow && value) {
       input.size = math.max(value.length, 5)
     }
     inputOnStateChange(input, state, prevState, component)
