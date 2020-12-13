@@ -5,6 +5,10 @@
   "main": "src/index.js",
   "sideEffects": false,
   "types": "./dist/src/index.d.ts",
+  "funding": {
+    "type": "GitHub Sponsors ❤",
+    "url": "https://github.com/sponsors/dmonad"
+  },
   "scripts": {
     "start": "concurrently 'rollup -wc' serve",
     "dist": "rollup -c",
