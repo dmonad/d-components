@@ -25,7 +25,7 @@
     "concurrently": "^5.1.0",
     "rollup": "^1.20.0",
     "rollup-plugin-terser": "^5.3.0",
-    "serve": "^11.3.0",
+    "serve": "^14.2.0",
     "standard": "^14.3.3",
     "typescript": "^3.8.3",
     "y-webrtc": "^10.1.3",
